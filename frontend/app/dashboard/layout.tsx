@@ -41,8 +41,22 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       ),
     },
     {
+      label: "Vlog",
+      href: "/dashboard/vlog",
+      icon: (
+        <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+    },
+    {
       label: "Weather",
       href: "/dashboard/Weather",
+      icon: (
+        <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+    },
+    {
+      label: "Blogs",
+      href: "/dashboard/blog",
       icon: (
         <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
