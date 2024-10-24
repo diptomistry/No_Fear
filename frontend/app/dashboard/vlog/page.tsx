@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { SetStateAction, useState } from "react"
 import { Film, Music, Image, Plus, X, Play, Download, Share2 } from "lucide-react"
 
 // Mock data for demonstration
@@ -28,12 +28,12 @@ const mockMusicTracks = [
 ]
 
 export default function TravelVlogGenerator() {
-  const [selectedImages, setSelectedImages] = useState([])
-  const [selectedMusic, setSelectedMusic] = useState(null)
+  const [selectedImages, setSelectedImages] = useState<{ id: number; src?: string; alt?: string }[]>([])
+  const [selectedMusic, setSelectedMusic] = useState<{ id: number; name: string; mood: string } | null>(null)
   const [isGenerating, setIsGenerating] = useState(false)
-  const [generatedVlog, setGeneratedVlog] = useState(null)
+  const [generatedVlog, setGeneratedVlog] = useState<{ title: string; duration: string; thumbnail: string } | null>(null)
 
-  const handleImageSelect = (image) => {
+  const handleImageSelect = (image: { id: number; src?: string; alt?: string }) => {
     setSelectedImages(prev =>
       prev.includes(image)
         ? prev.filter(i => i.id !== image.id)
@@ -41,7 +41,7 @@ export default function TravelVlogGenerator() {
     )
   }
 
-  const handleMusicSelect = (track) => {
+  const handleMusicSelect = (track: { id: number; name: string; mood: string }) => {
     setSelectedMusic(track)
   }
 

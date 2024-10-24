@@ -4,7 +4,7 @@ const API_BASE_URL = 'http://localhost:3000/api/albums';
 const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTcyOTc4NjY3MSwiZXhwIjoxNzI5NzkwMjcxfQ.TeQK070Wx-1QfGOeidezPH5UPaD0fds4UF5XnUSmfgw";
 
 // Create a new album
-export const createAlbum = async (albumData) => {
+export const createAlbum = async (albumData: { title: string; description: string; TripId?: any; }) => {
   console.log('Creating album...');
   console.log('albumData:', albumData);
   try {
@@ -31,7 +31,7 @@ export const getAllAlbums = async () => {
 };
 
 // Get all albums by trip ID
-export const getAlbumsByTripId = async (tripId) => {
+export const getAlbumsByTripId = async (tripId: any) => {
   try {
     const response = await axios.get(`${API_BASE_URL}/trip/${tripId}`, { headers: { Authorization: token } });
     return response.data;
@@ -42,7 +42,7 @@ export const getAlbumsByTripId = async (tripId) => {
 };
 
 // Get a single album by ID
-export const getAlbumById = async (id) => {
+export const getAlbumById = async (id: any) => {
   try {
     const response = await axios.get(`${API_BASE_URL}/${id}`, { headers: { Authorization: token } });
     return response.data;
@@ -53,7 +53,7 @@ export const getAlbumById = async (id) => {
 };
 
 // Update an album by ID
-export const updateAlbum = async (id, albumData) => {
+export const updateAlbum = async (id: any, albumData: any) => {
   try {
     const response = await axios.put(`${API_BASE_URL}/${id}`, albumData, { headers: { Authorization: token } });
     return response.data;
@@ -64,7 +64,7 @@ export const updateAlbum = async (id, albumData) => {
 };
 
 // Delete an album by ID
-export const deleteAlbum = async (id) => {
+export const deleteAlbum = async (id: any) => {
   try {
     const response = await axios.delete(`${API_BASE_URL}/${id}`, { headers: { Authorization: token } });
     return response.data;
@@ -75,7 +75,7 @@ export const deleteAlbum = async (id) => {
 };
 
 // Upload image to album
-export const uploadImageToAlbum = async (albumId, imageFile, additionalData, tripId) => {
+export const uploadImageToAlbum = async (albumId: string | number | null, imageFile: string | Blob, additionalData: { [x: string]: string | Blob; title: string | Blob; }, tripId: number) => {
   try {
     console.log('Uploading image to album...');
     console.log('albumId:', albumId);
@@ -105,7 +105,7 @@ export const uploadImageToAlbum = async (albumId, imageFile, additionalData, tri
 };
 
 // Get all images by query
-export const getImagesByQuery = async (query) => {
+export const getImagesByQuery = async (query: string) => {
   try {
     const response = await axios.get(`${API_BASE_URL}/images?query=${query}`, { headers: { Authorization: token } });
     return response.data;
