@@ -11,14 +11,20 @@ import {
 
 const Page = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [uploadedImages, setUploadedImages] = useState([]);
+  const [uploadedImages, setUploadedImages] = useState<{ id: number; title: string; imageUrl: string }[]>([]);
   const [activeTab, setActiveTab] = useState('gallery');
-  const [albums, setAlbums] = useState([]);
-  const [images, setImages] = useState([]);
-  const [selectedAlbumId, setSelectedAlbumId] = useState(null);
+  interface Album {
+    id: number;
+    title: string;
+    images: { id: number; title: string; imageUrl: string }[];
+  }
+  
+  const [albums, setAlbums] = useState<Album[]>([]);
+  const [images, setImages] = useState<{ id: number; title: string; imageUrl: string }[]>([]);
+  const [selectedAlbumId, setSelectedAlbumId] = useState<number | null>(null);
   const [uploading, setUploading] = useState(false);
   const tripId =6;
-  const [uploadSuccess, setUploadSuccess] = useState(null); // null: no status, true: success, false: error
+  const [uploadSuccess, setUploadSuccess] = useState<boolean | null>(null); // null: no status, true: success, false: error
   const [errorMessage, setErrorMessage] = useState("");
   const fetchAlbums = async () => {
     try {
@@ -49,13 +55,14 @@ const Page = () => {
   }, [searchQuery]);
 
   // Handle search input change
-  const handleSearch = useCallback((query) => {
+  const handleSearch = useCallback((query: React.SetStateAction<string>) => {
     setSearchQuery(query);
   }, []);
 
-  const handleImageUpload = async (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (!files || files.length === 0) return;
+    const file = files[0];
 
     setUploading(true);
     setUploadSuccess(null);
@@ -127,7 +134,7 @@ const Page = () => {
             <h2 className="text-2xl font-semibold text-orange-500">Albums</h2>
             <Select
               value={selectedAlbumId || ""}
-              onChange={(e) => setSelectedAlbumId(e.target.value)}
+              onChange={(e) => setSelectedAlbumId(Number(e.target.value))}
               className=""
               size="small"
             >
@@ -224,7 +231,7 @@ const Page = () => {
               disabled={uploading}
             />
             <Button
-              onClick={() => document.querySelector('input[type="file"]').click()}
+              onClick={() => (document.querySelector('input[type="file"]') as HTMLInputElement)?.click()}
               className="mt-4 inline-block px-5 py-2 rounded-lg text-sm sm:text-base font-medium bg-orange-500 text-white hover:bg-orange-600 transition-colors"
               disabled={uploading}
             >
