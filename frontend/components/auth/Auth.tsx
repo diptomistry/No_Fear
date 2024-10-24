@@ -115,7 +115,7 @@ console.log(data);
           localStorage.removeItem('email');
           localStorage.removeItem('password');
         }
-        window.location.href = "/dashboard"; // Redirect to dashboard after successful login
+        window.location.href = "/dashboard/home"; // Redirect to dashboard after successful login
       } else {
         setError( 'Login failed. Please check your credentials.'); // Show specific error message
       }

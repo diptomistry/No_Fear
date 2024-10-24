@@ -219,44 +219,44 @@ export const workExperience = [
 export const aiFeatures = [
   {
     id: 1,
-    title: "AI Song Creation",
-    desc: "Transform text from images into personalized songs using advanced AI models.",
+    title: "Basic Itinerary Generation",
+    desc: "A user-friendly interface where users input their destination, and the system generates a suggested travel itinerary. It includes transportation options, meal plans, accommodation recommendations, and estimated trip costs tailored to different budgets.",
     className: "md:col-span-2",
     thumbnail: {
-      src: "/exp1.svg",
+      src: "/travel.svg",
       width: 100,  // Set appropriate width
       height: 100, // Set appropriate height
     },
   },
   {
     id: 2,
-    title: "AI Chatbot",
-    desc: "Engage users with an intelligent chatbot powered by state-of-the-art AI technology.",
+    title: "Map Integration",
+    desc: "Displays key itinerary locations like transportation, restaurants, and hotels on an interactive map. The map updates in real-time based on itinerary changes, and users can explore details about each location and visualize routes between stops.",
     className: "md:col-span-2",
     thumbnail: {
-      src: "/exp2.svg",
+      src: "/map.svg",
       width: 100,  // Set appropriate width
       height: 100, // Set appropriate height
     },
   },
   {
     id: 3,
-    title: "Defective Fabric Detection",
-    desc: "Automatically detect defects in fabric using machine learning and AI-powered image analysis.",
+    title: "Weather Notifications",
+    desc: "Provides real-time weather updates and alerts based on the user’s trip dates and destination. This feature helps users avoid disruptions by warning about potential weather events like storms, enabling them to adjust their plans accordingly.",
     className: "md:col-span-2",
     thumbnail: {
-      src: "/exp3.svg",
+      src: "/weather.svg",
       width: 100,  // Set appropriate width
       height: 100, // Set appropriate height
     },
   },
   {
     id: 4,
-    title: "AI Image Generator",
-    desc: "Generate high-quality images from text prompts with cutting-edge AI models.",
+    title: "Trip Blog and Vlog Generation",
+    desc: "After the trip, users can create personalized travel blogs and automated vlogs based on their itinerary and uploaded images. The system crafts a memorable recap, with options to add music, highlights, and additional content for a visually appealing summary.",
     className: "md:col-span-2",
     thumbnail: {
-      src: "/exp4.svg",
+      src: "/blog.svg",
       width: 100,  // Set appropriate width
       height: 100, // Set appropriate height
     },
