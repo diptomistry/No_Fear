@@ -20,21 +20,35 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
   const links = [
     {
-      label: "Chatbot",
+      label: "Home",
       href: "/dashboard/chatbot",
       icon: (
         <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
-      label: "Profile",
+      label: "Itinerary",
       href: "#",
       icon: (
         <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
-      label: "Settings",
+      label: "Budget",
+      href: "#",
+      icon: (
+        <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+    },
+    {
+      label: "Weather",
+      href: "#",
+      icon: (
+        <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+    },
+    {
+      label: "Photos",
       href: "#",
       icon: (
         <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
@@ -87,7 +101,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </SidebarBody>
       </Sidebar>
-      <div className="flex flex-1 p-4  dark:bg-black-100 rounded-tl-2xl  border  dark:border-neutral-700">
+      <div className="flex flex-1 p-4  bg-white-100 rounded-tl-2xl  border  border-neutral-700">
         {children}
       </div>
     </div>

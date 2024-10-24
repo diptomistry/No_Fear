@@ -73,6 +73,8 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
     const enteredOtp = otp.join(""); // Get the entered OTP as a string
 
     // Check if the entered OTP matches the received OTP
+    console.log("Entered OTP:", enteredOtp);
+    console.log("Received OTP:", ReceivedOtp);
     if (enteredOtp === ReceivedOtp) {
       const data = {
         name,
@@ -92,6 +94,7 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
             },
           }
         );
+        console.log(response.data);
       
        if(response.data.token) {
         alert("User created successfully");
@@ -126,7 +129,7 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
             Enter the 4-digit verification code that was sent to your email.
           </p>
         </header>
-        <form id="otp-form" onSubmit={handleSubmit}>
+        <form id="otp-for</div>m" >
           <div className="flex items-center justify-center gap-3">
             {otp.map((digit, index) => (
               <input
@@ -145,7 +148,9 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
           </div>
           {isButtonDisabled && (
             <div className="max-w-[260px] mx-auto mt-4 ">
+              <button onClick={handleSubmit}>
               <AuthButton buttonText="Verify" />
+              </button>
             </div>
           )}
         </form>
