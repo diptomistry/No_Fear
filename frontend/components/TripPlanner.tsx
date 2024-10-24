@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import AddressAutocomplete from "./AddressAutocomplete";
-import { useRouter } from 'next/navigation';
 
 const TripPlanner = () => {
   const [destination, setDestination] = useState("");
@@ -8,7 +7,6 @@ const TripPlanner = () => {
   const [lng, setLng] = useState<number | null>(null);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const router = useRouter();
 
   const handleAddressSelect = (address: string, latitude: number, longitude: number) => {
     setDestination(address);
@@ -17,15 +15,16 @@ const TripPlanner = () => {
   };
 
   const handleStartPlanning = () => {
-    const query = new URLSearchParams({
+    const tripData = {
       destination,
-      lat: lat?.toString() || '',
-      lng: lng?.toString() || '',
-      startDate: startDate || '',
-      endDate: endDate || '',
-    }).toString();
-    
-    router.push(`/auth?${query}`);
+      lat,
+      lng,
+      startDate,
+      endDate,
+    };
+
+    localStorage.setItem('tripData', JSON.stringify(tripData));
+
   };
 
   return (
@@ -80,12 +79,14 @@ const TripPlanner = () => {
 
         {/* Start Planning Button */}
         <div className="pt-4">
+         <a href="/auth">
           <button
-            className="w-full sm:w-auto px-8 py-3 bg-[#E76F51] hover:bg-[#E76F51]/90 text-white font-semibold rounded-full transition-colors flex items-center justify-center mx-auto"
-            onClick={handleStartPlanning}
-          >
-            Start planning
-          </button>
+          className="w-full sm:w-auto px-8 py-3 bg-[#E76F51] hover:bg-[#E76F51]/90 text-white font-semibold rounded-full transition-colors flex items-center justify-center mx-auto"
+          onClick={handleStartPlanning}
+        >
+          Start planning
+        </button>
+        </a>
         </div>
       </div>
     </div>
