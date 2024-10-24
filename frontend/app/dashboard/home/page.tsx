@@ -7,6 +7,10 @@ import { CardHeader } from "@/components/dashboard/CardHeader";
 import { CardTitle } from "@/components/dashboard/CardTitle";
 import { CardDescription } from "@/components/dashboard/CardDescription";
 import { CardContent } from "@/components/dashboard/CardContent";
+import WeatherForecast from "@/components/dashboard/WeatherNotifications";
+import BudgetCalculatorCard from "@/components/dashboard/CalculatorCard";
+import TravelBudgetCalculator from "@/components/dashboard/calculator";
+import CustomModal from "@/components/CustomModal";
 
 import {
   Plane,
@@ -17,8 +21,6 @@ import {
   CloudRain,
   Image,
 } from "lucide-react";
-
-
 
 interface TripDetailsProps {
   title: string;
@@ -37,7 +39,7 @@ const TripDetails: React.FC<TripDetailsProps> = ({
   departureDate = "October 26, 2024",
   departureTime = "8:00 AM",
   hotel = "Blue Marine Resort",
-  mealsIncluded = "3 meals per day included"
+  mealsIncluded = "3 meals per day included",
 }) => {
   return (
     <div className="container mx-auto p-4 ">
@@ -142,32 +144,14 @@ const TripDetails: React.FC<TripDetailsProps> = ({
 
         
       </div>
-      <div className="mt-5 pb-5">
-        {/* Photo Upload Card */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Photos </CardTitle>
-            <CardDescription> Your memories</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="grid grid-cols-3 gap-2">
-                {[1, 2, 3].map((index) => (
-                  <div
-                    key={index}
-                    className="bg-gray-100 aspect-square rounded-md flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer"
-                  >
-                    <Image className="h-8 w-8 text-gray-400" />
-                  </div>
-                ))}
-              </div>
-             
-            </div>
-          </CardContent>
-        </Card>
+      <div>
+      <WeatherForecast />
       </div>
     </div>
   );
 };
 
 export default TripDetails;
+/*
+ 
+      */

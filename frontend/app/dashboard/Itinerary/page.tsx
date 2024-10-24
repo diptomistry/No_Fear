@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import AddressAutocomplete from "@/components/AddressAutocomplete";
 import AuthButton from "@/components/auth/AuthButton";
 import CustomModal from "@/components/CustomModal";
+import TravelBudgetCalculator from "@/components/dashboard/calculator";
 
 // Define the Location type with an 'id' property
 type Location = {
@@ -158,23 +159,27 @@ export default function MapPage() {
   const handlePlanning = () => {
     setIsOpen(true);
     const seletedaddress = {
-        address: destination,
-        lat: lat,
-        lng: lng,
-        };
-    }
-    const [startDate, setStartDate] = useState("");
-    const [tripDuration, setTripDuration] = useState(4); // Default to 4 days
-    const [budgetPreference, setBudgetPreference] = useState("Budget"); // Default to Budget
-    const [isOpen, setIsOpen] = useState(false);
-    const closeModal = () => setIsOpen(false);
-   
-    
-  
-    const handleSubmit = () => {
-      // Send the trip details back when the form is submitted
-    
+      address: destination,
+      lat: lat,
+      lng: lng,
     };
+  };
+  const [isOpen2, setIsOpen2] = useState(false);
+  const closeModal2 = () => setIsOpen2(false);
+  const hadleCalculator = () => {
+    setIsOpen2(true);
+  }
+
+    
+  const [startDate, setStartDate] = useState("");
+  const [tripDuration, setTripDuration] = useState(4); // Default to 4 days
+  const [budgetPreference, setBudgetPreference] = useState("Budget"); // Default to Budget
+  const [isOpen, setIsOpen] = useState(false);
+  const closeModal = () => setIsOpen(false);
+
+  const handleSubmit = () => {
+    // Send the trip details back when the form is submitted
+  };
   return (
     <div className="min-h-screen w-full">
       <nav className="h-16 border-b px-4 flex items-center mb-10">
@@ -183,76 +188,88 @@ export default function MapPage() {
         </h1>
       </nav>
       <div className="flex gap-10">
-      <AddressAutocomplete onAddressSelect={handleAddressSelect} />
-      <button onClick={handlePlanning}>
-        <AuthButton buttonText="Start Planning" />
-      </button>
+        <AddressAutocomplete onAddressSelect={handleAddressSelect} />
+        <button onClick={handlePlanning}>
+          <AuthButton buttonText="Start Planning" />
+        </button>
       </div>
 
       <TravelMap locations={locations} />
       <CustomModal isOpen={isOpen} onRequestClose={closeModal}>
-      
         <div className="p-4">
-            <h2 className="text-xl font-bold mb-4 text-gray-800">Selected Address</h2>
-            <p className="mb-2">
-                <span className="font-semibold">Address:</span> <span className="text-teal-600">{destination}</span>
-            </p>
-         
+          <h2 className="text-xl font-bold mb-4 text-gray-800">
+            Selected Address
+          </h2>
+          <p className="mb-2">
+            <span className="font-semibold">Address:</span>{" "}
+            <span className="text-teal-600">{destination}</span>
+          </p>
         </div>
-      <div className="p-4">
-        <h2 className="text-xl font-bold mb-4">Enter Trip Details</h2>
+        <div className="p-4">
+          <h2 className="text-xl font-bold mb-4">Enter Trip Details</h2>
 
-        {/* Start Date */}
-        <div className="mb-4">
-          <label className="block font-semibold mb-2">Start Date:</label>
-          <input
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-            className="w-full p-2 border rounded text-white"
-          />
-        </div>
+          {/* Start Date */}
+          <div className="mb-4">
+            <label className="block font-semibold mb-2">Start Date:</label>
+            <input
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+              className="w-full p-2 border rounded text-white"
+            />
+          </div>
 
-        {/* Trip Duration (Slider) */}
-        <div className="mb-4">
-          <label className="block font-semibold mb-2">
-            Trip Duration: {tripDuration} day(s)
-          </label>
-          <input
-            type="range"
-            min="1"
-            max="30"
-            value={tripDuration}
-            onChange={(e) => setTripDuration(Number(e.target.value))}
-            className="w-full"
-          />
-        </div>
+          {/* Trip Duration (Slider) */}
+          <div className="mb-4">
+            <label className="block font-semibold mb-2">
+              Trip Duration: {tripDuration} day(s)
+            </label>
+            <input
+              type="range"
+              min="1"
+              max="30"
+              value={tripDuration}
+              onChange={(e) => setTripDuration(Number(e.target.value))}
+              className="w-full"
+            />
+          </div>
 
-        {/* Budget Preference */}
-        <div className="mb-4">
-          <label className="block font-semibold mb-2">Budget Preference:</label>
-          <select
-            value={budgetPreference}
-            onChange={(e) => setBudgetPreference(e.target.value)}
-            className="w-full p-2 border rounded text-white"
-          >
-            <option value="Budget">Budget</option>
-            <option value="Standard">Standard</option>
-            <option value="Luxury">Luxury</option>
-          </select>
-        </div>
+          {/* Budget Preference */}
+          <div className="flex w-full gap-4 ">
+            <div className="mb-4 w-2/3">
+              <label className="block font-semibold mb-2">
+                Budget Preference:
+              </label>
+              <select
+                value={budgetPreference}
+                onChange={(e) => setBudgetPreference(e.target.value)}
+                className="w-full p-2 border rounded text-white"
+              >
+                <option value="Budget">Budget</option>
+                <option value="Standard">Standard</option>
+                <option value="Luxury">Luxury</option>
+              </select>
+            </div>
+            <div className="mt-6" onClick={hadleCalculator}>
+              <AuthButton buttonText="Estimate Budget" />
+            </div>
+          </div>
 
-        {/* Submit Button */}
-        <div className="flex justify-end">
-          <button
-            onClick={handleSubmit}
-            className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-700 transition"
-          >
-            Submit
-          </button>
+          {/* Submit Button */}
+          <div className="flex justify-end">
+            <button
+              onClick={handleSubmit}
+              className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-700 transition"
+            >
+              Submit
+            </button>
+          </div>
         </div>
-      </div>
-    </CustomModal>
+      </CustomModal>
+      <CustomModal isOpen={isOpen2} onRequestClose={closeModal2}>
+        <TravelBudgetCalculator />
+      </CustomModal>
+
     </div>
   );
 }
