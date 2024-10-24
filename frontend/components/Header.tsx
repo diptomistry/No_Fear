@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import AuthButton from "./auth/AuthButton";
 
 const Header = () => {
   return (
@@ -8,12 +8,14 @@ const Header = () => {
         
         {/* Logo */}
         <Link href="/" className="text-4xl font-semibold">
-          zeeAI<span className="text-lime-600">.</span>
+        TravelEase<span className="text-lime-600">.</span>
         </Link>
+        
 
 
    
       </div>
+      
     </header>
   );
 };
