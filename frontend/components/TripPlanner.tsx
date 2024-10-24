@@ -28,20 +28,22 @@ const TripPlanner = () => {
           <label className="block text-sm font-medium text-gray-700 mb-1">Dates (optional)</label>
           <div className="grid grid-cols-2 gap-4">
             <div className="relative">
+                <label className="block text-sm font-medium text-gray-500 mb-1">Start date</label>
               <input
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-200 focus:border-gray-400 outline-none transition-all"
+                className="w-full py-3 px-4 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
                 placeholder="Start date"
               />
             </div>
             <div className="relative">
+                <label className="block text-sm font-medium text-gray-500 mb-1">End date</label>
               <input
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-200 focus:border-gray-400 outline-none transition-all"
+                className="w-full py-3 px-4 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
                 placeholder="End date"
               />
             </div>

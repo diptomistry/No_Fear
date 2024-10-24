@@ -49,10 +49,10 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({ onAddressSele
 
   return (
     <input
-    className=' w-full py-3 px-4 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"'
+    className=' w-full py-3 px-4 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white'
       ref={inputRef}
       type="text"
-      placeholder=" Search and Set your address"
+      placeholder=" Search and Set your Destination"
       onChange={(e) => onAddressSelect(e.target.value)}
     />
   );
