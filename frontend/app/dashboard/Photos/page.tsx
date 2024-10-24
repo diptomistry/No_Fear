@@ -104,10 +104,10 @@ const Page = () => {
   }, [images, uploadedImages, searchQuery]);
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-orange-50 to-gray-50 p-4 sm:p-6 lg:p-8 rounded-sm">
+    <div className="w-full h-full  p-4 sm:p-6 lg:p-8 rounded-sm">
       {/* Header */}
       <h1 className="text-3xl sm:text-2xl lg:text-4xl font-bold text-center text-gray-900 mb-6 sm:mb-8 lg:mb-12">
-        <span className="bg-gradient-to-r from-orange-600 to-orange-400 bg-clip-text text-transparent">Travel Memories</span>
+        <span className="bg-clip-text text-transparent">Travel Memories</span>
       </h1>
 
       {/* Tabs */}
@@ -118,7 +118,7 @@ const Page = () => {
             onClick={() => setActiveTab(tab)}
             className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg text-sm sm:text-base font-medium transition-all duration-300 ${
               activeTab === tab 
-                ? 'bg-orange-500 text-white shadow-sm' 
+                ? 'bg-teal-600 text-white shadow-sm' 
                 : 'text-gray-600 hover:bg-orange-50'
             }`}
           >
@@ -131,7 +131,7 @@ const Page = () => {
         <div className="bg-white rounded-2xl shadow-sm p-4 sm:p-6 lg:p-8">
           {/* Album Dropdown */}
           <div className="flex flex-row items-center gap-4 mb-4">
-            <h2 className="text-2xl font-semibold text-orange-500">Albums</h2>
+            <h2 className="text-2xl font-semibold text-gray-500">Albums</h2>
             <Select
               value={selectedAlbumId || ""}
               onChange={(e) => setSelectedAlbumId(Number(e.target.value))}
@@ -150,11 +150,11 @@ const Page = () => {
           <div className="flex flex-col gap-4 mb-6">
             {/* Search */}
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-orange-400 h-5 w-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white h-5 w-5" />
               <input
                 type="text"
                 placeholder="Search your memories..."
-                className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm sm:text-base"
+                className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition-all text-sm sm:text-base"
                 value={searchQuery}
                 onChange={(e) => handleSearch(e.target.value)}
               />
@@ -167,7 +167,7 @@ const Page = () => {
             return (
               albumImages && albumImages.length > 0 && (
                 <div key={album.id} className="mb-8">
-                  <h2 className="text-2xl font-bold text-orange-600 mb-4">{album.title}</h2>
+                  <h2 className="text-2xl font-bold text-teal-800 mb-4">{album.title}</h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
                     {albumImages.map((image) => (
                       <div key={image.id} className="group relative rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
@@ -196,13 +196,13 @@ const Page = () => {
           <div className="border-2 border-dashed border-orange-200 rounded-xl p-6 sm:p-8 text-center hover:border-orange-400 transition-colors bg-orange-50/50">
             {/* Icon or Progress Spinner */}
             {uploading ? (
-              <CircularProgress className="mx-auto text-orange-400" />
+              <CircularProgress className="mx-auto text-teal-600" />
             ) : uploadSuccess === true ? (
-              <CheckCircle className="mx-auto h-8 sm:h-12 w-8 sm:w-12 text-green-500" />
+              <CheckCircle className="mx-auto h-8 sm:h-12 w-8 sm:w-12 text-gray-700" />
             ) : uploadSuccess === false ? (
               <XCircle className="mx-auto h-8 sm:h-12 w-8 sm:w-12 text-red-500" />
             ) : (
-              <Upload className="mx-auto h-8 sm:h-12 w-8 sm:w-12 text-orange-400" />
+              <Upload className="mx-auto h-8 sm:h-12 w-8 sm:w-12 text-gray-600" />
             )}
   
             {/* Title and Instructions */}
@@ -232,7 +232,7 @@ const Page = () => {
             />
             <Button
               onClick={() => (document.querySelector('input[type="file"]') as HTMLInputElement)?.click()}
-              className="mt-4 inline-block px-5 py-2 rounded-lg text-sm sm:text-base font-medium bg-orange-500 text-white hover:bg-orange-600 transition-colors"
+              className="mt-4 inline-block px-5 py-2 rounded-lg text-sm sm:text-base font-medium bg-teal-600 text-white hover:bg-teal-700 transition-colors"
               disabled={uploading}
             >
               {uploading ? "Uploading..." : "Upload Image"}
