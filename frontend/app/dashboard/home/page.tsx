@@ -84,7 +84,7 @@ export default function TravelPlannerDashboard() {
                     <span>Oct 27</span>
                     <div className="flex items-center">
                       <Sun className="h-6 w-6 text-yellow-500 mr-2" />
-                      <span>29°C</span>
+                      <span>29°Cc</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
