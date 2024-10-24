@@ -101,9 +101,10 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </SidebarBody>
       </Sidebar>
-      <div className="flex flex-1 p-4  bg-white-100 rounded-tl-2xl  border  border-neutral-700">
-        {children}
-      </div>
+      <div className="flex flex-1 p-4 bg-white-100 rounded-tl-2xl border border-neutral-700 overflow-y-auto ">
+  {children}
+</div>
+
     </div>
   );
 };
