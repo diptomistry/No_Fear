@@ -6,7 +6,6 @@ import UserProvider from "@/components/UserProvider";
 import SessionWrapper from "@/components/SessionWrapper";
 import Script from 'next/script';  // Add this import
 import Provider from "@/providers/Provider";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -24,7 +23,6 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/logo.png" sizes="any" />
       </head>
-      <Provider >
 
         <body className={inter.className}>
           <UserProvider>
@@ -45,7 +43,6 @@ export default function RootLayout({
             </SessionWrapper>
           </UserProvider>
         </body>
-      </Provider>
     </html>
   );
 }

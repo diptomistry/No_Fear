@@ -98,7 +98,7 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
       
        if(response.data.token) {
         alert("User created successfully");
-        window.location.href = "/dashboard";
+        window.location.href = "/dashboard/home";
        }
       
         // Handle response

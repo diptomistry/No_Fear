@@ -42,9 +42,12 @@ const Auth = () => {
       }
     }
   }, [session,isSignup]);
+  
+        
   const handleGoogleLogin = async (googleEmail: string) => {
+    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
     try {
-      const response = await fetch('http://localhost:8000/api/auth/login', {
+      const response = await fetch(`${baseUrl}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -112,7 +115,7 @@ console.log(data);
           localStorage.removeItem('email');
           localStorage.removeItem('password');
         }
-        window.location.href = "/dashboard"; // Redirect to dashboard after successful login
+        window.location.href = "/dashboard/home"; // Redirect to dashboard after successful login
       } else {
         setError( 'Login failed. Please check your credentials.'); // Show specific error message
       }

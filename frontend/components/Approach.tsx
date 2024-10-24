@@ -12,9 +12,9 @@ const Approach = () => {
       <div className="my-20 flex flex-col lg:flex-row items-center justify-center w-full gap-4">
         {/* add des prop */}
         <Card
-          title="Sign Up or Log In"
+          title="Input Your Trip Details"
           icon={<AceternityIcon order="Step 1" />}
-          des="Create an account or log in to access our AI-powered features and start creating amazing outputs."
+          des="Begin by entering your desired destination, travel dates, and any specific preferences you have (like budget, accommodation type, and activities) into the platform. This will kickstart the itinerary generation process."
         >
           <CanvasRevealEffect
             animationSpeed={5.1}
@@ -23,9 +23,9 @@ const Approach = () => {
           />
         </Card>
         <Card
-          title="Choose a Specific Service"
+          title="Explore the Generated Itinerary"
           icon={<AceternityIcon order="Step 2" />}
-          des="Select from one of our AI services: Song Creation, Chatbot, Defective Fabric Detection, or Image Generation."
+          des="Once your details are submitted, the system will create a suggested itinerary that includes transportation options, meal plans, accommodation suggestions, and a cost breakdown. Review the interactive map for key locations and adjust any parts of the itinerary as needed."
         >
           <CanvasRevealEffect
             animationSpeed={3}
@@ -43,9 +43,9 @@ const Approach = () => {
           {/* <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" /> */}
         </Card>
         <Card
-          title="Provide a Prompt or Necessary Input"
+          title="Stay Updated and Share Your Experience"
           icon={<AceternityIcon order="Step 3" />}
-          des="Enter the required text, image, or other relevant input to let the AI work its magic and deliver your desired result."
+          des="During your trip, utilize the weather notifications feature to stay informed about real-time weather updates. After your journey, leverage the trip blog and vlog generation tools to document your experience, complete with images and notes, creating lasting memories to share with others."
         >
           <CanvasRevealEffect
             animationSpeed={3}

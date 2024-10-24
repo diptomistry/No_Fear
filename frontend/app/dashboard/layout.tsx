@@ -1,8 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
 import { signOut } from "next-auth/react";
-
+import { UserContext } from "@/components/UserProvider";
 import {
   IconArrowLeft,
   IconBrandTabler,
@@ -14,6 +14,16 @@ import { cn } from "@/lib/utils";
 import { Logo, LogoIcon } from "@/components/dashboard/SidebarDemo";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+  const userContext = useContext(UserContext) as any;
+  const user = userContext?.user?.user; // Access the nested user
+  const userName = user?.name || "Guest";
+  
+
+
+
+  
+
+
   const handleLogout = () => {
     signOut({ callbackUrl: "/" }); // Redirect to the root route after sign out
   };
@@ -99,7 +109,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           <div>
             <SidebarLink
               link={{
-                label: "Manu Arora",
+                label: userName,
                 href: "#",
                 icon: (
                   <Image

@@ -50,7 +50,7 @@ const FormContent = () => {
       
       if (response.data.success) {
         alert("User created successfully");
-        window.location.href = "/dashboard";
+        window.location.href = "/dashboard/home";
       } else {
         alert("User creation failed: " + response.data.message);
       }
