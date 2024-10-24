@@ -1,23 +1,45 @@
-import React, { useState } from 'react';
-import AddressAutocomplete from './AddressAutocomplete';
+import React, { useState } from "react";
+import AddressAutocomplete from "./AddressAutocomplete";
+import { useRouter } from 'next/navigation';
 
 const TripPlanner = () => {
-  const [destination, setDestination] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [destination, setDestination] = useState("");
+  const [lat, setLat] = useState<number | null>(null);
+  const [lng, setLng] = useState<number | null>(null);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const router = useRouter();
 
-  const handleAddressSelect = (address: string) => {
+  const handleAddressSelect = (address: string, latitude: number, longitude: number) => {
     setDestination(address);
+    setLat(latitude);
+    setLng(longitude);
+  };
+
+  const handleStartPlanning = () => {
+    const query = new URLSearchParams({
+      destination,
+      lat: lat?.toString() || '',
+      lng: lng?.toString() || '',
+      startDate: startDate || '',
+      endDate: endDate || '',
+    }).toString();
+    
+    router.push(`/auth?${query}`);
   };
 
   return (
     <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">Plan a new trip</h1>
+      <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">
+        Plan a new trip
+      </h1>
 
       <div className="space-y-4">
         {/* Destination Input */}
         <div className="w-full">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Where to?</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Where to?
+          </label>
           <div className="w-full">
             <AddressAutocomplete onAddressSelect={handleAddressSelect} />
           </div>
@@ -25,10 +47,14 @@ const TripPlanner = () => {
 
         {/* Date Range */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Dates (optional)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Dates (optional)
+          </label>
           <div className="grid grid-cols-2 gap-4">
             <div className="relative">
-                <label className="block text-sm font-medium text-gray-500 mb-1">Start date</label>
+              <label className="block text-sm font-medium text-gray-500 mb-1">
+                Start date
+              </label>
               <input
                 type="date"
                 value={startDate}
@@ -38,7 +64,9 @@ const TripPlanner = () => {
               />
             </div>
             <div className="relative">
-                <label className="block text-sm font-medium text-gray-500 mb-1">End date</label>
+              <label className="block text-sm font-medium text-gray-500 mb-1">
+                End date
+              </label>
               <input
                 type="date"
                 value={endDate}
@@ -52,7 +80,10 @@ const TripPlanner = () => {
 
         {/* Start Planning Button */}
         <div className="pt-4">
-          <button className="w-full sm:w-auto px-8 py-3 bg-[#E76F51] hover:bg-[#E76F51]/90 text-white font-semibold rounded-full transition-colors flex items-center justify-center mx-auto">
+          <button
+            className="w-full sm:w-auto px-8 py-3 bg-[#E76F51] hover:bg-[#E76F51]/90 text-white font-semibold rounded-full transition-colors flex items-center justify-center mx-auto"
+            onClick={handleStartPlanning}
+          >
             Start planning
           </button>
         </div>

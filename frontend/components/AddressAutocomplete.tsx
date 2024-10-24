@@ -7,7 +7,7 @@ declare global {
 }
 
 interface AddressAutocompleteProps {
-  onAddressSelect: (address: string) => void;
+  onAddressSelect: (address: string, lat: number, lng: number) => void; // Updated to send lat/lon
 }
 
 const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({ onAddressSelect }) => {
@@ -35,8 +35,10 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({ onAddressSele
 
     autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace();
-      if (place.formatted_address) {
-        onAddressSelect(place.formatted_address);
+      if (place.formatted_address && place.geometry) {
+        const lat = place.geometry.location.lat();
+        const lng = place.geometry.location.lng();
+        onAddressSelect(place.formatted_address, lat, lng);
       }
     });
 
@@ -49,11 +51,10 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({ onAddressSele
 
   return (
     <input
-    className=' w-full py-3 px-4 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white'
+      className="w-full py-3 px-4 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
       ref={inputRef}
       type="text"
-      placeholder=" Search and Set your Destination"
-      onChange={(e) => onAddressSelect(e.target.value)}
+      placeholder="Search and Set your Destination"
     />
   );
 };

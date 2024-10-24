@@ -83,7 +83,7 @@ const Hero = () => {
         <CustomModal onRequestClose={handleCloseModal} isOpen={isModalOpen}>
           {/* Example data to be displayed in the modal */}
           <div className="p-4">
-            <TripPlanner />
+            <TripPlanner  />
           </div>
         </CustomModal>
       )}
