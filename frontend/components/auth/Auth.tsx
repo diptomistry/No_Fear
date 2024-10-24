@@ -97,6 +97,8 @@ const Auth = () => {
       });
 
       const data = await response.json();
+      console.log(data);
+      
     // console.log(data.token);
 console.log(data);
       if (response.ok) {
