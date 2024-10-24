@@ -21,35 +21,35 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const links = [
     {
       label: "Home",
-      href: "/dashboard/chatbot",
+      href: "/dashboard/home",
       icon: (
         <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
       label: "Itinerary",
-      href: "#",
+      href: "/dashboard/Itinerary",
       icon: (
         <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
-      label: "Budget",
-      href: "#",
+      label: "budget",
+      href: "/dashboard/Budget",
       icon: (
         <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
       label: "Weather",
-      href: "#",
+      href: "/dashboard/Weather",
       icon: (
         <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
       label: "Photos",
-      href: "#",
+      href: "/dashboard/Photos",
       icon: (
         <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
