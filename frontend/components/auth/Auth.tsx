@@ -87,7 +87,7 @@ const Auth = () => {
     setError(""); // Clear previous errors
 
     try {
-      
+      console.log(email,password);
       const response = await fetch( `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
@@ -98,7 +98,7 @@ const Auth = () => {
 
       const data = await response.json();
     // console.log(data.token);
-
+console.log(data);
       if (response.ok) {
         login?.(data); 
         localStorage.setItem('token', data.token);
