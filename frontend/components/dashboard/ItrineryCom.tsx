@@ -12,6 +12,7 @@ import {
   Bus,
 } from "lucide-react";
 
+// Define Location type
 interface Location {
   id: string;
   name: string;
@@ -24,13 +25,18 @@ interface Location {
   description?: string;
 }
 
+interface TravelMapProps {
+  locations: Location[]; // Accept locations as a prop
+}
+
+// Define DirectionsInfo type
 interface DirectionsInfo {
   distance: string;
   duration: string;
   mode: google.maps.TravelMode;
 }
 
-const TravelMap: React.FC = () => {
+const TravelMap: React.FC<TravelMapProps> = ({locations})=> {
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(
     null
   );
@@ -44,42 +50,30 @@ const TravelMap: React.FC = () => {
   const [travelMode, setTravelMode] = useState<google.maps.TravelMode | null>(
     null
   );
+  console.log(locations);
 
   // Sample locations - replace with your data
+  /*
   const locations: Location[] = [
     {
       id: "1",
       name: "My Location",
       type: "home",
-      coordinates: { lat: 40.7128, lng: -74.006 },
+      coordinates: { lat: 52.47677170000001, lng: -1.903438 },
       address: "123 Main St, New York, NY",
-      description: "Main transportation hub",
+     
     },
     {
         id: "2",
         name: "Central Station",
         type: "transport",
-        coordinates: { lat: 40.7128, lng: -74.006 },
+        coordinates: { lat:  52.47547679999999, lng: -1.9003098 },
         address: "123 Main St, New York, NY",
         description: "Main transportation hub",
       },
-    {
-      id: "3",
-      name: "Luxury Hotel & Spa",
-      type: "hotel",
-      coordinates: { lat: 40.7158, lng: -74.009 },
-      address: "456 Park Ave, New York, NY",
-      description: "5-star accommodation",
-    },
-    {
-      id: "4",
-      name: "Fine Dining Restaurant",
-      type: "restaurant",
-      coordinates: { lat: 40.7138, lng: -74.007 },
-      address: "789 Food St, New York, NY",
-      description: "Michelin-starred restaurant",
-    },
+   
   ];
+  */
 
   useEffect(() => {
     const initMap = async () => {
@@ -141,7 +135,7 @@ const TravelMap: React.FC = () => {
     };
 
     initMap();
-  }, []);
+  }, [locations]);
 
   const getDirections = async (destination: Location) => {
     if (!map || !selectedLocation) return;
