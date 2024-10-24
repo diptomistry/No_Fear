@@ -23,7 +23,7 @@ const TripPlanner = () => {
               value={destination}
               onChange={(e) => setDestination(e.target.value)}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-200 focus:border-gray-400 outline-none transition-all"
-              placeholder="Saint-Martin"
+              placeholder="eg. saint martin"
             />
             <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
               <span className="text-2xl text-gray-400">+</span>
