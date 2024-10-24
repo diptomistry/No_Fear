@@ -150,7 +150,7 @@ const TravelBudgetCalculator = () => {
           <div>
             <button
               onClick={handleAddExpense}
-              className="w-full bg-blue-500 text-white py-3 px-4 rounded-lg hover:bg-blue-600 transition-colors flex items-center justify-center"
+              className="w-full bg-orange-500 text-white py-3 px-4 rounded-lg hover:bg-orange-600 transition-colors flex items-center justify-center"
             >
               <Save className="w-4 h-4 mr-1" />
               Add Expense
