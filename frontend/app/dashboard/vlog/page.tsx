@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { SetStateAction, useState } from "react"
 import { Film, Music, Image, Plus, X, Play, Download, Share2 } from "lucide-react"
 
 // Mock data for demonstration
@@ -28,12 +28,12 @@ const mockMusicTracks = [
 ]
 
 export default function TravelVlogGenerator() {
-  const [selectedImages, setSelectedImages] = useState([])
-  const [selectedMusic, setSelectedMusic] = useState(null)
+  const [selectedImages, setSelectedImages] = useState<{ id: number; src?: string; alt?: string }[]>([])
+  const [selectedMusic, setSelectedMusic] = useState<{ id: number; name: string; mood: string } | null>(null)
   const [isGenerating, setIsGenerating] = useState(false)
-  const [generatedVlog, setGeneratedVlog] = useState(null)
+  const [generatedVlog, setGeneratedVlog] = useState<{ title: string; duration: string; thumbnail: string } | null>(null)
 
-  const handleImageSelect = (image) => {
+  const handleImageSelect = (image: { id: number; src?: string; alt?: string }) => {
     setSelectedImages(prev =>
       prev.includes(image)
         ? prev.filter(i => i.id !== image.id)
@@ -41,7 +41,7 @@ export default function TravelVlogGenerator() {
     )
   }
 
-  const handleMusicSelect = (track) => {
+  const handleMusicSelect = (track: { id: number; name: string; mood: string }) => {
     setSelectedMusic(track)
   }
 
@@ -60,15 +60,15 @@ export default function TravelVlogGenerator() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <h1 className="text-4xl font-bold text-center text-orange-600 mb-8">Travel Vlog Generator</h1>
+      <h1 className="text-4xl font-bold text-center text-teal-600 mb-8">Travel Vlog Generator</h1>
       
       {/* Itinerary Section */}
       <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4 text-orange-500">Your Itinerary</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-teal-600">Your Itinerary</h2>
         <div className="bg-white shadow-md rounded-lg overflow-hidden">
           {mockItinerary.map((item, index) => (
             <div key={index} className="flex items-center p-4 border-b border-gray-200 last:border-b-0">
-              <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+              <div className="w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
                 Day {item.day}
               </div>
               <div>
@@ -82,19 +82,19 @@ export default function TravelVlogGenerator() {
 
       {/* Image Selection */}
       <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4 text-orange-500">Select Images</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-teal-600">Select Images</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
           {mockImages.map((image) => (
             <div
               key={image.id}
               className={`relative cursor-pointer rounded-lg overflow-hidden transition-all duration-300 ${
-                selectedImages.includes(image) ? 'ring-4 ring-orange-500' : 'hover:shadow-lg'
+                selectedImages.includes(image) ? 'ring-4 ' : 'hover:shadow-lg'
               }`}
               onClick={() => handleImageSelect(image)}
             >
               <img src={image.src} alt={image.alt} className="w-full h-24 object-cover" />
               {selectedImages.includes(image) && (
-                <div className="absolute inset-0 bg-orange-500 bg-opacity-50 flex items-center justify-center">
+                <div className="absolute inset-0  bg-opacity-50 flex items-center justify-center">
                   <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
@@ -110,14 +110,14 @@ export default function TravelVlogGenerator() {
 
       {/* Music Selection */}
       <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4 text-orange-500">Choose Background Music</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-teal-600">Choose Background Music</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {mockMusicTracks.map((track) => (
             <div
               key={track.id}
               className={`p-4 rounded-lg cursor-pointer transition-all duration-300 ${
                 selectedMusic?.id === track.id
-                  ? 'bg-orange-500 text-white'
+                  ? ' text-white'
                   : 'bg-white shadow-md hover:shadow-lg'
               }`}
               onClick={() => handleMusicSelect(track)}
@@ -140,7 +140,7 @@ export default function TravelVlogGenerator() {
           className={`px-8 py-3 rounded-full text-white font-semibold transition-all duration-300 ${
             isGenerating
               ? 'bg-gray-400 cursor-not-allowed'
-              : 'bg-orange-500 hover:bg-orange-600 shadow-lg hover:shadow-xl'
+              : ' shadow-lg hover:shadow-xl'
           }`}
           onClick={handleGenerateVlog}
           disabled={isGenerating}
@@ -175,10 +175,10 @@ export default function TravelVlogGenerator() {
             <h3 className="text-2xl font-bold mb-2">{generatedVlog.title}</h3>
             <p className="text-gray-600 mb-4">Duration: {generatedVlog.duration}</p>
             <div className="flex justify-between">
-              <button className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors duration-300">
+              <button className="px-4 py-2  text-white rounded-lg transition-colors duration-300">
                 <Download className="w-5 h-5 inline-block mr-1" /> Download
               </button>
-              <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-300">
+              <button className="px-4 py-2 bg-black-100 text-white rounded-lg hover:bg-black transition-colors duration-300">
                 <Share2 className="w-5 h-5 inline-block mr-1" /> Share
               </button>
             </div>

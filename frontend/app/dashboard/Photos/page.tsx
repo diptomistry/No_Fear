@@ -6,7 +6,7 @@ import { createAlbum, getAllAlbums, uploadImageToAlbum, getImagesByQuery } from 
 
 const Page = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [uploadedImages, setUploadedImages] = useState([]);
+  const [uploadedImages, setUploadedImages] = useState<{ id: number; title: string; imageUrl: string }[]>([]);
   const [activeTab, setActiveTab] = useState('gallery');
   const [albums, setAlbums] = useState([]);
   const [images, setImages] = useState([]);
@@ -54,9 +54,10 @@ const Page = () => {
     setSearchQuery(query);
   }, []);
 
-  const handleImageUpload = async (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (!files || files.length === 0) return;
+    const file = files[0];
 
     setUploading(true);
     setUploadSuccess(null);
@@ -116,10 +117,10 @@ const Page = () => {
       {activeTab === 'gallery' ? (
         <div className="bg-white rounded-2xl shadow-sm p-4 sm:p-6 lg:p-8">
           <div className="flex flex-row items-center gap-4 mb-4">
-            <h2 className="text-2xl font-semibold text-orange-500">Albums</h2>
+            <h2 className="text-2xl font-semibold text-gray-500">Albums</h2>
             <Select
               value={selectedAlbumId || ""}
-              onChange={(e) => setSelectedAlbumId(e.target.value)}
+              onChange={(e) => setSelectedAlbumId(Number(e.target.value))}
               className=""
               size="small"
             >
@@ -133,11 +134,11 @@ const Page = () => {
 
           <div className="flex flex-col gap-4 mb-6">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-orange-400 h-5 w-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white h-5 w-5" />
               <input
                 type="text"
                 placeholder="Search your memories..."
-                className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm sm:text-base"
+                className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition-all text-sm sm:text-base"
                 value={searchQuery}
                 onChange={(e) => handleSearch(e.target.value)}
               />

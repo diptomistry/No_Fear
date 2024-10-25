@@ -154,12 +154,12 @@ const PlanPage = () => {
     <div className="max-w-7xl mx-auto p-6 space-y-8">
       {/* Header */}
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-orange-600">Travel Blogs</h1>
+        <h1 className="text-3xl font-bold text-black-100">Travel Blogs</h1>
         <button
           onClick={() => setShowModal(true)}
-          className="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg flex items-center gap-2 transition-colors"
+          className="px-4 py-2  text-teal-700 rounded-lg flex items-center gap-2 transition-colors"
         >
-          <span className="text-lg">+</span> Create New Blog
+          <span className="text-lg text-teal-700">+</span> Create New Blog
         </button>
       </div>
 
@@ -172,8 +172,8 @@ const PlanPage = () => {
                 key={blog.id}
                 className={`p-6 rounded-lg border transition-all duration-200 cursor-pointer
                   ${selectedBlog?.id === blog.id 
-                    ? 'border-orange-400 bg-orange-50' 
-                    : 'border-orange-200 hover:border-orange-300 hover:bg-orange-50'
+                    ? ' bg-orange-50' 
+                    : ' hover:bg-orange-50'
                   }`}
                 onClick={() => setSelectedBlog(blog)}
               >
@@ -195,7 +195,7 @@ const PlanPage = () => {
                         setSelectedBlog(blog);
                         setShowEditModal(true);
                       }}
-                      className="p-2 text-orange-600 hover:bg-orange-100 rounded-full"
+                      className="p-2 text-gray-700 hover:bg-gray-700 rounded-full"
                     >
                       Edit
                     </button>
@@ -222,10 +222,10 @@ const PlanPage = () => {
           {selectedBlog ? (
             <div className="p-8 space-y-6">
               <div className="space-y-4">
-                <h2 className="text-3xl font-bold text-orange-600">
+                <h2 className="text-3xl font-bold text-teal-700">
                   {selectedBlog.title}
                 </h2>
-                <div className="flex items-center gap-2 text-orange-500">
+                <div className="flex items-center gap-2 text-gray-700">
                   <span className="text-sm">Created by User {selectedBlog.UserId}</span>
                   <span className="text-sm">•</span>
                   <span className="text-sm">
@@ -235,14 +235,14 @@ const PlanPage = () => {
               </div>
               
               <div className="prose prose-orange">
-                <h3 className="text-xl font-semibold text-orange-600">Description</h3>
+                <h3 className="text-xl font-semibold text-gray-700">Description</h3>
                 <p className="text-orange-700 whitespace-pre-wrap">
                   {selectedBlog.description}
                 </p>
               </div>
 
               <div className="prose prose-orange">
-                <h3 className="text-xl font-semibold text-orange-600">Notable Events</h3>
+                <h3 className="text-xl font-semibold text-gray-700">Notable Events</h3>
                 <p className="text-orange-700 whitespace-pre-wrap">
                   {selectedBlog.notableEvents}
                 </p>
@@ -250,10 +250,10 @@ const PlanPage = () => {
             </div>
           ) : (
             <div className="p-8 text-center">
-              <h3 className="text-xl font-medium text-orange-600 mb-2">
+              <h3 className="text-xl font-medium text-teal-700 mb-2">
                 Select a blog to view details
               </h3>
-              <p className="text-orange-600">
+              <p className="text-teal-700">
                 Click on a blog from the list to view its full details.
               </p>
             </div>
@@ -269,7 +269,7 @@ const PlanPage = () => {
       >
         <div className="space-y-6">
           <div>
-            <label htmlFor="title" className="block font-medium text-orange-600 mb-2">
+            <label htmlFor="title" className="block font-medium text-gray-700 mb-2">
               Title
             </label>
             <input
@@ -282,7 +282,7 @@ const PlanPage = () => {
             />
           </div>
           <div>
-            <label htmlFor="notableEvents" className="block font-medium text-orange-600 mb-2">
+            <label htmlFor="notableEvents" className="block font-medium text-gray-700 mb-2">
               Notable Events
             </label>
             <textarea
@@ -296,7 +296,7 @@ const PlanPage = () => {
           <button
             onClick={generateBlog}
             disabled={isLoading}
-            className="w-full bg-orange-600 hover:bg-orange-700 text-white rounded-lg px-4 py-2"
+            className="w-full  text-white bg-black-100 rounded-lg px-4 py-2"
           >
             {isLoading ? 'Generating Blog...' : 'Generate Blog'}
           </button>
@@ -311,7 +311,7 @@ const PlanPage = () => {
       >
         <div className="space-y-6">
           <div>
-            <label htmlFor="title" className="block font-medium text-orange-600 mb-2">
+            <label htmlFor="title" className="block font-medium text-gray-700 mb-2">
               Title
             </label>
             <input
@@ -324,7 +324,7 @@ const PlanPage = () => {
             />
           </div>
           <div>
-            <label htmlFor="notableEvents" className="block font-medium text-orange-600 mb-2">
+            <label htmlFor="notableEvents" className="block font-medium text-gray-700 mb-2">
               Notable Events
             </label>
             <textarea
@@ -337,7 +337,7 @@ const PlanPage = () => {
           </div>
           <button
             onClick={updateBlog}
-            className="w-full bg-orange-600 hover:bg-orange-700 text-white rounded-lg px-4 py-2"
+            className="w-full  text-white rounded-lg px-4 py-2"
           >
             Update Blog
           </button>
