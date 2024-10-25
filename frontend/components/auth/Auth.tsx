@@ -91,6 +91,7 @@ const Auth = () => {
 
     try {
       console.log(email,password);
+      console.log(process.env.NEXT_PUBLIC_API_BASE_URL);
       const response = await fetch( `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
