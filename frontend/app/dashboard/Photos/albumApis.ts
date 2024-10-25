@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:3000/api/albums';
+const API_BASE_URL = 'http://localhost:3000/api/album';
 const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTcyOTc4NjY3MSwiZXhwIjoxNzI5NzkwMjcxfQ.TeQK070Wx-1QfGOeidezPH5UPaD0fds4UF5XnUSmfgw";
 
 // Create a new album
@@ -107,7 +107,15 @@ export const uploadImageToAlbum = async (albumId: string | number | null, imageF
 // Get all images by query
 export const getImagesByQuery = async (query: string) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/images?query=${query}`, { headers: { Authorization: token } });
+    console.log('Fetching images by query...');
+    console.log('query:', query);
+    const response = await axios.post(`${API_BASE_URL}/query/1`, JSON.stringify({ query }), {
+      headers: {
+      'Content-Type': 'application/json',
+      Authorization: token,
+      },
+    });
+    console.log('response:', response);
     return response.data;
   } catch (error) {
     console.error('Error fetching images by query:', error);
