@@ -5,6 +5,8 @@ import AddressAutocomplete from "@/components/AddressAutocomplete";
 import AuthButton from "@/components/auth/AuthButton";
 import CustomModal from "@/components/CustomModal";
 import TravelBudgetCalculator from "@/components/dashboard/calculator";
+import { Router } from "next/router";
+import { useRouter } from "next/navigation";
 
 // Define the Location type with an 'id' property
 type Location = {
@@ -169,6 +171,7 @@ export default function MapPage() {
   const hadleCalculator = () => {
     setIsOpen2(true);
   }
+  const router = useRouter();
 
     
   const [startDate, setStartDate] = useState("");
@@ -177,7 +180,40 @@ export default function MapPage() {
   const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    try {
+        console.log('Destination:', destination);
+        console.log('Start Date:', startDate);
+        console.log('Trip Duration:', tripDuration);
+        console.log('Budget Preference:', budgetPreference);
+        
+        const res = await fetch('http://localhost:3000/api/trip/generate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+                destination,
+                startDate,
+                tripDuration,
+                budgetPreference,
+                userLat: lat.toString(),
+                userLang: lng.toString()
+            }),
+            
+        })
+
+        // console.log(res);
+        
+        const data = await res.json();
+        console.log(data);
+        
+        router.push(`/dashboard/home/${data.trip.id}`);
+        
+    } catch(error) {
+        console.error('Error:', error);
+    }
     // Send the trip details back when the form is submitted
   };
   return (
